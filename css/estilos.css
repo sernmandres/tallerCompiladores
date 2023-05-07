@@ -1,0 +1,12 @@
+#tabla ,
+.tabla{
+    width: 80%;
+    border-collapse: separate;
+}
+
+td {
+    width: 33.33%;
+    text-align: center ;
+    border: 1px solid #000000;
+    
+}

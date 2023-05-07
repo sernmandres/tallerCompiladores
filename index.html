@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller compiladores</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <div>
+        <div>
+            <label>Cuantos estados</label>
+            <input type="text">
+        </div>
+        <div>
+            <label>Cuantos Simbolos</label>
+            <input type="text">
+        </div>
+        <div>
+            <button> Generar tabla </button>
+        </div>
+    </div>
+
+    <!-- Cuerpo de la tabla | botones | interfaz -->
+    <table id="tabla" class="tabla">
+        <thead>
+            <tr>
+                <td>Estados</td>
+                <td colspan="2">Simbolos de entrada</td>
+                <td>Acepta(1) Rechaza (0)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><!--Vacio --></td>
+                <td>2</td>
+                <td>4</td>
+                <td><!--Vacio --></td>
+            </tr>
+            <!-- Estrctura dinamica -->
+            <tr>
+                <td>A</td>
+                <td>A,C</td>
+                <td>B,D</td>
+                <td>0</td>
+            </tr>
+
+            <tr>
+                <td>B</td>
+                <td>-----</td>
+                <td>C,D</td>
+                <td>0</td>
+            </tr>
+
+            <tr>
+                <td>C</td>
+                <td>A,D</td>
+                <td>-----</td>
+                <td>1</td>
+            </tr>
+
+            <tr>
+                <td>D</td>
+                <td>D</td>
+                <td>-----</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+      
+    </table>
+
+    <div>
+        <!-- Espacio para la nueva tabla -->
+    </div>
+
+    <div>
+        <button> Convertir AFND A AFD </button>
+    </div>
+
+    <div>
+        <button> Generar gráfica </button>
+    </div>
+    
+    
+    <!-- Genera la tabla con las dimensiones-->
+    <script src="js/generarAFND.js"></script> <!-- Edwin -->
+    <!-- Verifica que si sea un AFND - aplicar reglas-->
+    <script src="js/validar.js"></script> <!-- Sebastian -->
+    <!-- Generar la nueva tabla con el AFD-->
+    <script src="js/generarAFD.js"></script> <!-- Vanessa -->
+     <!-- Generar gráfica-->
+    <script src="js/grafica.js"></script> <!-- Andres --->
+</body>
+</html>
