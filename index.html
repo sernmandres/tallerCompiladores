@@ -12,15 +12,15 @@
 
     <div>
         <div>
-            <label>Cuantos estados</label>
-            <input type="text">
+            <label for="estado">Cuantos estados:</label>
+            <input type="text" name="txtEstados">
         </div>
         <div>
-            <label>Cuantos Simbolos</label>
-            <input type="text">
+            <label for="simbol">Cuantos Simbolos:</label>
+            <input type="text" name="txtSimbolos">
         </div>
         <div>
-            <button> Generar tabla </button>
+            <button onclick="generarTabla()""> Generar tabla </button>
         </div>
     </div>
 
@@ -29,18 +29,13 @@
         <thead>
             <tr>
                 <td>Estados</td>
-                <td colspan="2">Simbolos de entrada</td>
+                <td name="simbolos_entrada" colspan="">Simbolos de entrada</td>
                 <td>Acepta(1) Rechaza (0)</td>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><!--Vacio --></td>
-                <td>2</td>
-                <td>4</td>
-                <td><!--Vacio --></td>
-            </tr>
-            <!-- Estrctura dinamica -->
+            
+            <!-- Estrctura dinamica 
             <tr>
                 <td>A</td>
                 <td>A,C</td>
@@ -67,7 +62,7 @@
                 <td>D</td>
                 <td>-----</td>
                 <td>0</td>
-            </tr>
+            </tr>-->
         </tbody>
       
     </table>
@@ -77,7 +72,7 @@
     </div>
 
     <div>
-        <button> Convertir AFND A AFD </button>
+        <button onclick="generarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
     <div>
