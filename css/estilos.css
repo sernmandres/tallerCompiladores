@@ -10,3 +10,14 @@ td {
     border: 1px solid #000000;
     
 }
+hr{
+    height: 1px;
+    background-color: black;
+
+}
+hr:hover{
+    height: 1px;
+    cursor: pointer;
+    background-color: red;
+}
+
