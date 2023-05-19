@@ -134,7 +134,7 @@ retornarMatriz=()=>{
             row.forEach((it,ind)=>{
                 
                 if(ind!=row.length-1 && ind!=0){
-                    tempArray.push(it)
+                    tempArray.push(it.split(","))
                 } 
             })
             tempRow.push(row[0])
