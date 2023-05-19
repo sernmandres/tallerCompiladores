@@ -117,3 +117,31 @@ pintarMatriz=()=>{
         })
       })
 }
+
+retornarMatriz=()=>{
+
+    newMatriz = []
+    matriz.forEach((row,index)=>{
+
+
+        if(index==0) {
+            newMatriz.push(row)
+        }else{
+
+            tempArray = []
+            tempRow = []
+
+            row.forEach((it,ind)=>{
+                
+                if(ind!=row.length-1 && ind!=0){
+                    tempArray.push(it)
+                } 
+            })
+            tempRow.push(row[0])
+            tempRow.push(tempArray)
+            tempRow.push(row[row.length-1])
+            newMatriz.push(tempRow)
+        }
+    })
+    return newMatriz
+}
