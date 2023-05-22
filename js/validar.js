@@ -1,10 +1,10 @@
-let Matriz = [
-    ["null", "2", "4", "null"],
-    ["A", [["A", "C"], ["B", "D"],], "0",],
-    ["B", [["null"], ["C", "D"]], "0"],
-    ["C", [["A", "D"], ["null"]], "1"],
-    ["D", [["D"], ["null"]], "0"],
-];
+// let Matriz = [
+//     ["null", "2", "4", "null"],
+//     ["A", [["A", "C"], ["B", "D"],], "0",],
+//     ["B", [["null"], ["C", "D"]], "0"],
+//     ["C", [["A", "D"], ["null"]], "1"],
+//     ["D", [["D"], ["null"]], "0"],
+// ];
 
 
 function validarAFND() {
@@ -32,12 +32,15 @@ function validarAFND() {
 
 function validar() {
     if (validarAFND()) {
+        console.log("Entro en validar() nfa")
         //Estados del automata
-        const NFAFinal = {};
+        let NFAFinal = {};
         let states = estadosNoRepetidos()
         let alphabet = alfabetos()
         let finalStates = estadosAceptacion()
         let transitions = estadosTransicion(alphabet)
+
+        console.log("alphabet alphabet " , alphabet)
         let initialState = Matriz[1][0]
 
         NFAFinal.initialState = initialState
@@ -45,6 +48,8 @@ function validar() {
         NFAFinal.states = states
         NFAFinal.alphabet = alphabet
         NFAFinal.transitions = transitions
+
+        console.log("NFAFinal NFAFinal" , NFAFinal)
 
         let dfa = generateDFA(
             new NFA(

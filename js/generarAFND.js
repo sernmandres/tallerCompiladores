@@ -5,6 +5,7 @@ let generateFlag = true
 
 let num_estados = 0 
 let num_simbolos= 0 
+let Matriz = []
 
 generarTabla=()=>{
     let simbolos = document.querySelector('input[name="txtSimbolos"]').value
@@ -72,9 +73,9 @@ eliminarRow=(id)=>{
 firtsRow=(number_columns)=>{
     var simbolos_entrada_rows = "<td><input type='text' onchange='generarMatriz()' style='width: 95%;'/></td>".repeat(number_columns)
         var rowinit = "<tr id='0'>"+
-        "<td><input type='text' value='' disabled></td>"
+        "<td><input type='text' value='null' disabled></td>"
         var rowend =
-        "<td><input type='text' value='' disabled></td>"+
+        "<td><input type='text' value='null' disabled></td>"+
         "</tr>"
         var nRow = rowinit+simbolos_entrada_rows+rowend
         new_table+=nRow
@@ -115,12 +116,11 @@ pintarMatriz=()=>{
 
 retornarMatriz=()=>{
 
-    newMatriz = []
     matriz.forEach((row,index)=>{
 
 
         if(index==0) {
-            newMatriz.push(row)
+            Matriz.push(row)
         }else{
 
             tempArray = []
@@ -138,8 +138,7 @@ retornarMatriz=()=>{
             tempRow.push(row[0])
             tempRow.push(tempArray)
             tempRow.push(row[row.length-1])
-            newMatriz.push(tempRow)
+            Matriz.push(tempRow)
         }
     })
-    return newMatriz
 }
