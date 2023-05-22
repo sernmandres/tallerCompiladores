@@ -73,9 +73,9 @@ eliminarRow=(id)=>{
 firtsRow=(number_columns)=>{
     var simbolos_entrada_rows = "<td><input type='text' onchange='generarMatriz()' style='width: 95%;'/></td>".repeat(number_columns)
         var rowinit = "<tr id='0'>"+
-        "<td><input type='text' value='' disabled></td>"
+        "<td><input type='text' value='null' disabled></td>"
         var rowend =
-        "<td><input type='text' value='' disabled></td>"+
+        "<td><input type='text' value='null' disabled></td>"+
         "</tr>"
         var nRow = rowinit+simbolos_entrada_rows+rowend
         new_table+=nRow
