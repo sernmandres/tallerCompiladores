@@ -129,6 +129,9 @@ retornarMatriz=()=>{
             row.forEach((it,ind)=>{
                 
                 if(ind!=row.length-1 && ind!=0){
+                    if(it==null){
+                        it='null'
+                    }
                     tempArray.push(it.split(","))
                 } 
             })
