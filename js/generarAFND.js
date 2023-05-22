@@ -2,13 +2,17 @@
 var new_table = '<tbody>'
 
 generarTabla=()=>{
-    let estados = document.querySelector('input[name="txtEstados"]').value
+    let estados = document.querySelector('input[name="txtEstados"]').value 
     let simbolos = document.querySelector('input[name="txtSimbolos"]').value
-    
-    document.querySelector('td[name="simbolos_entrada"]').outerHTML = '<td name="simbolos_entrada" colspan="'+simbolos+'">Simbolos de entrada</td>'
 
+    console.log("estados " , estados)
+    console.log("simbolos " , simbolos)
+    
+    document.querySelector('td[name="simbolos_entrada"]').outerHTML = '<td name="simbolos_entrada" colspan="'+ simbolos+ '">Simbolos de entrada</td>'
+
+    console.log("estados.length " , estados.length)
     if(estados.length > 0 && simbolos.length > 0){
-        firtsRow(simbolos)
+        firtsRow(simbolos);
         for (let index = 0; index < estados; index++) {
             //alert("number of simbolos"+simbolos+2)
             var rows="<td><input type='text' style='width: 95%;'/></td>".repeat(parseInt(simbolos)+2)
@@ -25,6 +29,7 @@ generarTabla=()=>{
 }
 
 firtsRow=(number_columns)=>{
+    console.log("number_columns " , number_columns)
     var simbolos_entrada_rows = "<td><input type='text' style='width: 95%;'/></td>".repeat(number_columns)
         var rowinit = "<tr>"+
         "<td><input type='text' value='' disabled></td>"
@@ -32,8 +37,7 @@ firtsRow=(number_columns)=>{
         "<td><input type='text' value='' disabled></td>"+
         "</tr>"
         var nRow = rowinit+simbolos_entrada_rows+rowend
-        new_table+=nRow
-    
+        new_table+=nRow    
 }
 
 
@@ -66,9 +70,10 @@ generarMatriz = () =>{
     }
 
 
-    /*matriz.forEach(function(entry) {
+    matriz.forEach(function(entry) {
         console.log(entry)
-      });*/
+      });
 
-
+    console.log("Forma de los datos ")
+    console.log("matriz  " , matriz)
 }
