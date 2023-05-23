@@ -14,8 +14,15 @@
 
     <section class="hero is-primary">
         <div class="hero-body">
+            <p class="subtitle" style="display: flex; justify-content: right;">
+                <span class="icon">
+                <i class="fa-solid fa-user-group"></i>
+                </span>
+                ㅤSOG / ASM
+                
+            </p>
           <p class="title">
-            Convertidor de Automatas
+            Convertidor de Autómatas
           </p>
           <p class="subtitle">
             AFND 
@@ -24,16 +31,17 @@
             </span>
             AFD
           </p>
+          
         </div>
       </section>
 
 
     <div class="inicial">
-        <div>
+        <div class="States">
             <label for="estado">Ingrese la cantidad de Estados:</label>
             <input type="text" class="txtEstado" name="txtEstados">
         </div>
-        <div>
+        <div class="States">
             <label for="simbol">Ingrese la cantidad de Simbolos:</label>
             <input type="text" class="txtSimbolo" name="txtSimbolos">
         </div>
@@ -43,83 +51,88 @@
     </div>
 
     <!-- Cuerpo de la tabla | botones | interfaz -->
-    <table id="tabla" class="tabla">
-        <thead>
-            <tr>
-                <td class="textTd">Estados</td>
-                <td class="textTd" name="simbolos_entrada" colspan="">Simbolos de entrada</td>
-                <td class="textTd">Acepta(1) Rechaza (0)</td>
-            </tr>
-        </thead>
-        <tbody>
 
-            <!-- Estrctura dinamica 
-            <tr>
-                <td>A</td>
-                <td>A,C</td>
-                <td>B,D</td>
-                <td>0</td>
-            </tr>
+    <div class="columns">
 
-            <tr>
-                <td>B</td>
-                <td>-----</td>
-                <td>C,D</td>
-                <td>0</td>
-            </tr>
+        <div class="column is-1">
 
-            <tr>
-                <td>C</td>
-                <td>A,D</td>
-                <td>-----</td>
-                <td>1</td>
-            </tr>
+        </div>
 
-            <tr>
-                <td>D</td>
-                <td>D</td>
-                <td>-----</td>
-                <td>0</td>
-            </tr>-->
-        </tbody>
+        <div class="column is-6">
+            <table id="tabla" class="tabla">
+                <thead>
+                    <tr class="textTd">
+                        <td>Estados</td>
+                        <td name="simbolos_entrada" colspan="">Simbolos de entrada</td>
+                        <td>Acepta(1) Rechaza (0)</td>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                   
+                </tbody>
+        
+            </table>
+        </div>
 
-    </table>
+        <div class="column is-4" style="display: table; text-align: center;">
+            <div>
+                <p class="textTd" id="ultTx">Diagrama de burbuja</p>
+                <div id="placeholder"></div>
+            </div>
+        </div>
+
+        <div class="column is-1">
+            
+        </div>
+
+      </div>
+
+    
 
 
 
-    <div>
-        <div id="placeholder"></div>
-    </div>
+    
 
     <div class="btnsFinal">
         <button class="btn1" onclick="agregarRow()"> Añadir fila</button>
         <button class="btn1" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
-    <div>
-        <button class="btn1 btnF" id="btnGraficar"> Generar gráfica </button>
-    </div>
+    <button class="btn1 btnF" id="btnGraficar" disabled="true"> Generar gráfica </button>
+    <button class="btn1" id="boton-borrar" disabled="true"> Resetear gráfica </button>
+
+    
 
 
     <!-- Genera la tabla con las dimensiones-->
     <script type="module">
         import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
-    document.getElementById("btnGraficar").onclick=async ()=>{
-        let validarInfo = validar() 
+        document.getElementById("btnGraficar").onclick= async ()=>{
+        let validarInfo = validar()
+        console.log("validarInfo.existe " , validarInfo.existe)
         if(validarInfo.existe) {
         let dfa = validarInfo.dfa
-    console.log("dfa " , dfa)
+        console.log("dfa " , dfa)
+        const graphviz = await Graphviz.load();
+        let graficar = dfa.toDotString()
+        const svg = graphviz.dot(graficar);
+        const div = document.getElementById("placeholder");
+        div.innerHTML = graphviz.layout(graficar, "svg", "dot");
 
-    const graphviz = await Graphviz.load();
-    let graficar = dfa.toDotString()
-    const svg = graphviz.dot(graficar);
-    const div = document.getElementById("placeholder");
-    div.innerHTML = graphviz.layout(graficar, "svg", "dot");
+        let resetGrafica = document.getElementById("boton-borrar");
+        resetGrafica.disabled = false;
+
     } else{
-        console.log("NO se genera")
+        console.log("No se genera")
     }
     };
+
+    document.getElementById("boton-borrar").onclick = () =>{
+        let elemento = document.getElementById("placeholder");
+        elemento.innerHTML = ""
+    } 
 
    
 

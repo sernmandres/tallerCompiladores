@@ -4,25 +4,31 @@
     border-collapse: collapse;
 }
 
+
 td {
     /*width: 33.33%;*/
     text-align: center ;
     border: 1px solid #000000;
+    background-color: rgb(228, 225, 225);
     
 }
 hr{
-    height: 1px;
-    background-color: black;
-
+    height: 4px;
+    background-color: aquamarine;
 }
+
 hr:hover{
-    height: 1px;
+    height: 4px;
     cursor: pointer;
-    background-color: red;
+    background-color: aqua;
 }
 
 .hero{
     margin-bottom: 2%;
+}
+
+.States{
+    margin-bottom: 1%;
 }
 
 .txtEstado{
@@ -47,12 +53,15 @@ hr:hover{
 
 }
 
-
+.columns{
+    display: flex;
+    justify-content: center;
+}
 
 .inicial{
     font-size: 18px;
     font-style: italic;
-    margin-left: 5%;
+    margin-left: 10%;
     margin-bottom: 2%;
 }
 
@@ -69,7 +78,6 @@ hr:hover{
 .tabla{
     font-size: 18px;
     font-style: italic;
-    margin-left: 5%;
     margin-bottom: 3px;
     text-align: center;
     padding: 4px;
@@ -77,7 +85,7 @@ hr:hover{
 }
 
 .textTd{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     font-style: italic;
 }
@@ -85,12 +93,13 @@ hr:hover{
 .btnsFinal{
     font-size: 18px;
     font-style: italic;
-    margin-left: 5%;
+    margin-left: 10%;
     margin-bottom: 3px;
 }
 
 .btnF{
-    margin-left: 5%;
-    margin-top: 2%;
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
