@@ -110,6 +110,8 @@ class NFA {
 
           estadoTransicion += this.formatDotState(t.nextStates)
       }
+
+      console.log("matrizResultado " , matrizResultado)
      
     } 
 

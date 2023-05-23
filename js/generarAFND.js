@@ -109,6 +109,7 @@ pintarMatriz=()=>{
 }
 
 retornarMatriz=()=>{
+    Matriz = []
     matriz.forEach((row,index)=>{
         if(index==0) {
             Matriz.push(row)
