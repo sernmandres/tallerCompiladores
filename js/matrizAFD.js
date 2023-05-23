@@ -5,7 +5,7 @@ let joined = []
 let matrizFDA = []
 
 function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
-
+    bodyMatrizFDA = "<tbody"
 
     estadosAcepta = finalStates
 
