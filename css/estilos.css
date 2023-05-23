@@ -1,23 +1,112 @@
 #tabla ,
 .tabla{
-    width: 80%;
-    border-collapse: separate;
+    width: 90%;
+    border-collapse: collapse;
 }
+
+
+
 
 td {
     /*width: 33.33%;*/
     text-align: center ;
     border: 1px solid #000000;
+    background-color: rgb(228, 225, 225);
     
 }
 hr{
-    height: 1px;
-    background-color: black;
+    height: 4px;
+    background-color: aquamarine;
+}
+
+hr:hover{
+    height: 4px;
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.hero{
+    margin-bottom: 2%;
+}
+
+.States{
+    margin-bottom: 1%;
+}
+
+.txtEstado{
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(228, 225, 225);
+    border-radius: 2px;
+    text-align: center;
+    border-radius: 10px;
 
 }
-hr:hover{
-    height: 1px;
+
+.txtSimbolo{
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(228, 225, 225);
+    border-radius: 2px;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.columns{
+    display: flex;
+    justify-content: center;
+}
+
+.inicial{
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+
+.btn1{
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    background-color: rgb(228, 225, 225);
     cursor: pointer;
-    background-color: red;
+    padding: 4px 4px 4px 4px;
+    border-radius: 10px;
+}
+
+.sepBtn{
+    margin-bottom: 4%;
+}
+
+.tabla{
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 3px;
+    text-align: center;
+    padding: 4px;
+
+}
+
+.textTd{
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color: #000000;
+}
+
+.btnsFinal{
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 10%;
+    margin-bottom: 3px;
+}
+
+.btnF{
+    margin-left: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 

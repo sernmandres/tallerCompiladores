@@ -5,7 +5,7 @@ let joined = []
 let matrizFDA = []
 
 function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
-
+    bodyMatrizFDA = "<tbody"
 
     estadosAcepta = finalStates
 
@@ -60,7 +60,6 @@ function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
 
 
     //crear tbody repecto a la matriz
-
     matrizFDA.forEach((it, index) => {
         let state = it[0].split(",").join("")
         var rows = "<td>" + state + "</td>"
