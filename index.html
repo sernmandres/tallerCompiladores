@@ -52,6 +52,35 @@
             </tr>
         </thead>
         <tbody>
+
+            <!-- Estrctura dinamica 
+            <tr>
+                <td>A</td>
+                <td>A,C</td>
+                <td>B,D</td>
+                <td>0</td>
+            </tr>
+
+            <tr>
+                <td>B</td>
+                <td>-----</td>
+                <td>C,D</td>
+                <td>0</td>
+            </tr>
+
+            <tr>
+                <td>C</td>
+                <td>A,D</td>
+                <td>-----</td>
+                <td>1</td>
+            </tr>
+
+            <tr>
+                <td>D</td>
+                <td>D</td>
+                <td>-----</td>
+                <td>0</td>
+            </tr>-->
         </tbody>
 
     </table>
@@ -62,18 +91,12 @@
         <div id="placeholder"></div>
     </div>
 
-    <div>
-        <button onclick="agregarRow()"> Añadir fila</button>
-        <button onclick="eliminarRow()"> Eliminar fila</button>
-        <button onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     <div class="btnsFinal">
         <button class="btn1" onclick="agregarRow()"> Añadir fila</button>
         <button class="btn1" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
     <div>
-        <button id="btnGraficar" disabled="true"> Generar gráfica </button>
-        <button id="boton-borrar" disabled="true"> Resetear gráfica </button>
         <button class="btn1 btnF" id="btnGraficar"> Generar gráfica </button>
     </div>
 
@@ -82,23 +105,10 @@
     <script type="module">
         import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
-    document.getElementById("btnGraficar").onclick= async ()=>{
-        let validarInfo = validar()
-        console.log("validarInfo.existe " , validarInfo.existe)
     document.getElementById("btnGraficar").onclick=async ()=>{
         let validarInfo = validar() 
         if(validarInfo.existe) {
         let dfa = validarInfo.dfa
-        console.log("dfa " , dfa)
-        const graphviz = await Graphviz.load();
-        let graficar = dfa.toDotString()
-        const svg = graphviz.dot(graficar);
-        const div = document.getElementById("placeholder");
-        div.innerHTML = graphviz.layout(graficar, "svg", "dot");
-
-        let resetGrafica = document.getElementById("boton-borrar");
-        resetGrafica.disabled = false;
-
     console.log("dfa " , dfa)
 
     const graphviz = await Graphviz.load();
@@ -110,11 +120,6 @@
         console.log("NO se genera")
     }
     };
-
-    document.getElementById("boton-borrar").onclick = () =>{
-        let elemento = document.getElementById("placeholder");
-        elemento.innerHTML = ""
-    }   
 
    
 
