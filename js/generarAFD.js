@@ -1,5 +1,3 @@
-console.log("archivo constructorDFA.js");
-
 class Transition {
   constructor(state, nextStates, symbol) {
     if (!(typeof state === "string" || state instanceof String))

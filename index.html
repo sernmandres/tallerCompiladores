@@ -78,7 +78,7 @@
     </div>
 
     <div>
-        <button id="btnGraficar"> Generar gráfica </button>
+        <button id="btnGraficar" disabled="true"> Generar gráfica </button>
     </div>
 
 
@@ -86,33 +86,26 @@
     <script type="module">
         import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
-    document.getElementById("btnGraficar").onclick=async ()=>{
+    document.getElementById("btnGraficar").onclick= async ()=>{
         let validarInfo = validar() 
         if(validarInfo.existe) {
         let dfa = validarInfo.dfa
-    console.log("dfa " , dfa)
-
-    const graphviz = await Graphviz.load();
-    let graficar = dfa.toDotString()
-    const svg = graphviz.dot(graficar);
-    const div = document.getElementById("placeholder");
-    div.innerHTML = graphviz.layout(graficar, "svg", "dot");
+        console.log("dfa " , dfa)
+        const graphviz = await Graphviz.load();
+        let graficar = dfa.toDotString()
+        const svg = graphviz.dot(graficar);
+        const div = document.getElementById("placeholder");
+        div.innerHTML = graphviz.layout(graficar, "svg", "dot");
     } else{
-        console.log("NO se genera")
+        console.log("No se genera")
     }
     };
 
    
 
     </script>
-    <!-- <script src="js/graphviz.js"></script> -->
-    <script src="js/generarAFND.js"></script> <!-- Edwin -->
-    <!-- Verifica que si sea un AFND - aplicar reglas-->
-    <script src="js/validar.js"></script> <!-- Sebastian -->
-    <!-- Generar la nueva tabla con el AFD-->
-    <script src="js/generarAFD.js"></script> <!-- Vanessa -->
-    <!-- Generar gráfica-->
-    <script src="js/generarGrafica.js"></script> <!-- Andres --->
-</body>
+    <script src="js/generarAFND.js"></script>
+    <script src="js/validar.js"></script>
+    <script src="js/generarAFD.js"></script>
 
 </html>
