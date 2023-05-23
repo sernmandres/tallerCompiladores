@@ -1,7 +1,7 @@
 #tabla ,
 .tabla{
-    width: 80%;
-    border-collapse: separate;
+    width: 90%;
+    border-collapse: collapse;
 }
 
 td {
@@ -19,5 +19,78 @@ hr:hover{
     height: 1px;
     cursor: pointer;
     background-color: red;
+}
+
+.hero{
+    margin-bottom: 2%;
+}
+
+.txtEstado{
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(228, 225, 225);
+    border-radius: 2px;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.txtSimbolo{
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(228, 225, 225);
+    border-radius: 2px;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+
+
+.inicial{
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+
+.btn1{
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    background-color: rgb(228, 225, 225);
+    cursor: pointer;
+    padding: 4px 4px 4px 4px;
+    border-radius: 10px;
+}
+
+.tabla{
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 5%;
+    margin-bottom: 3px;
+    text-align: center;
+    padding: 4px;
+
+}
+
+.textTd{
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.btnsFinal{
+    font-size: 18px;
+    font-style: italic;
+    margin-left: 5%;
+    margin-bottom: 3px;
+}
+
+.btnF{
+    margin-left: 5%;
+    margin-top: 2%;
 }
 

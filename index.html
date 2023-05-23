@@ -7,21 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller compiladores</title>
     <link rel="stylesheet" href="css/estilos.css">
+
 </head>
 
 <body>
 
-    <div>
+    <section class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">
+            Convertidor de Automatas
+          </p>
+          <p class="subtitle">
+            AFND 
+            <span class="icon">
+                <i class="fas fa-arrow-right"></i>
+            </span>
+            AFD
+          </p>
+        </div>
+      </section>
+
+
+    <div class="inicial">
         <div>
-            <label for="estado">Cuantos estados:</label>
-            <input type="text" name="txtEstados">
+            <label for="estado">Ingrese la cantidad de Estados:</label>
+            <input type="text" class="txtEstado" name="txtEstados">
         </div>
         <div>
-            <label for="simbol">Cuantos Simbolos:</label>
-            <input type="text" name="txtSimbolos">
+            <label for="simbol">Ingrese la cantidad de Simbolos:</label>
+            <input type="text" class="txtSimbolo" name="txtSimbolos">
         </div>
         <div>
-            <button onclick="generarTabla()"> Generar tabla </button>
+            <button class="btn1" onclick="generarTabla()"> Generar tabla </button>
         </div>
     </div>
 
@@ -29,9 +46,9 @@
     <table id="tabla" class="tabla">
         <thead>
             <tr>
-                <td>Estados</td>
-                <td name="simbolos_entrada" colspan="">Simbolos de entrada</td>
-                <td>Acepta(1) Rechaza (0)</td>
+                <td class="textTd">Estados</td>
+                <td class="textTd" name="simbolos_entrada" colspan="">Simbolos de entrada</td>
+                <td class="textTd">Acepta(1) Rechaza (0)</td>
             </tr>
         </thead>
         <tbody>
@@ -68,17 +85,19 @@
 
     </table>
 
+
+
     <div>
         <div id="placeholder"></div>
     </div>
 
-    <div>
-        <button onclick="agregarRow()"> Añadir fila</button>
-        <button onclick="retornarMatriz()"> Convertir AFND A AFD </button>
+    <div class="btnsFinal">
+        <button class="btn1" onclick="agregarRow()"> Añadir fila</button>
+        <button class="btn1" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
     <div>
-        <button id="btnGraficar" disabled="true"> Generar gráfica </button>
+        <button class="btn1 btnF" id="btnGraficar"> Generar gráfica </button>
     </div>
 
 
@@ -86,26 +105,39 @@
     <script type="module">
         import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
-    document.getElementById("btnGraficar").onclick= async ()=>{
+    document.getElementById("btnGraficar").onclick=async ()=>{
         let validarInfo = validar() 
         if(validarInfo.existe) {
         let dfa = validarInfo.dfa
-        console.log("dfa " , dfa)
-        const graphviz = await Graphviz.load();
-        let graficar = dfa.toDotString()
-        const svg = graphviz.dot(graficar);
-        const div = document.getElementById("placeholder");
-        div.innerHTML = graphviz.layout(graficar, "svg", "dot");
+    console.log("dfa " , dfa)
+
+    const graphviz = await Graphviz.load();
+    let graficar = dfa.toDotString()
+    const svg = graphviz.dot(graficar);
+    const div = document.getElementById("placeholder");
+    div.innerHTML = graphviz.layout(graficar, "svg", "dot");
     } else{
-        console.log("No se genera")
+        console.log("NO se genera")
     }
     };
 
    
 
     </script>
-    <script src="js/generarAFND.js"></script>
-    <script src="js/validar.js"></script>
-    <script src="js/generarAFD.js"></script>
+    <!-- <script src="js/graphviz.js"></script> -->
+    <script src="js/generarAFND.js"></script> 
+    <!-- Verifica que si sea un AFND - aplicar reglas-->
+    <script src="js/validar.js"></script> 
+    <!-- Generar la nueva tabla con el AFD-->
+    <script src="js/generarAFD.js"></script> 
+    <!-- Generar gráfica-->
+    <script src="js/generarGrafica.js"></script> 
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+
+
+</body>
 
 </html>

@@ -24,7 +24,7 @@ generarTabla=()=>{
         }
         for (let index = 0; index < num_estados; index++) {
             
-            var rows="<td><input type='text' onchange='generarMatriz()' style='width: 95%;'/></td>".repeat(parseInt(num_simbolos)+2)
+            var rows="<td><input type='text' onchange='generarMatriz()' style='width: 95%; font-size:16px; font-weight: 600; text-align: center; background-color: rgb(228, 225, 225);'/></td>".repeat(parseInt(num_simbolos)+2)
             
             new_table+="<tr id='"+(index+1)+"'>"+rows+"</tr><hr onclick='eliminarRow("+(index+1)+")'>"
         }
@@ -73,9 +73,9 @@ eliminarRow=(id)=>{
 firtsRow=(number_columns)=>{
     var simbolos_entrada_rows = "<td><input type='text' onchange='generarMatriz()' style='width: 95%;'/></td>".repeat(number_columns)
         var rowinit = "<tr id='0'>"+
-        "<td><input type='text' value='null' disabled></td>"
+        "<td><input type='text' value='null' style='display: none;'></td>"
         var rowend =
-        "<td><input type='text' value='null' disabled></td>"+
+        "<td><input type='text' value='null' style='display: none;'></td>"+
         "</tr>"
         var nRow = rowinit+simbolos_entrada_rows+rowend
         new_table+=nRow
