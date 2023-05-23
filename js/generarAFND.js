@@ -1,21 +1,25 @@
 let new_table = '<tbody>'
 let matriz= []
-
 let generateFlag = true
-
-let num_estados = 0 
-let num_simbolos= 0 
+let num_estados = isNaN 
+let num_simbolos= isNaN 
 let Matriz = []
+let resultado = false
 
 generarTabla=()=>{
-    let simbolos = document.querySelector('input[name="txtSimbolos"]').value
-    
+    let simbolos = document.querySelector('input[name="txtSimbolos"]').value 
+    console.log("simbolos " , simbolos)
     document.querySelector('td[name="simbolos_entrada"]').outerHTML = '<td name="simbolos_entrada" colspan="'+simbolos+'">Simbolos de entrada</td>'
 
     if(generateFlag){ 
         num_estados = parseInt(document.querySelector('input[name="txtEstados"]').value)
         num_simbolos = parseInt(document.querySelector('input[name="txtSimbolos"]').value)
-
+        if(isNaN(num_estados) || isNaN(num_simbolos)) {
+            alert("Agregar cuantos simbolos y cuantas estados tiene el autómata")
+            return 
+        }
+        console.log("num_estados " , num_estados)
+        console.log("num_simbolos " , num_simbolos)
         firtsRow(num_simbolos)
 
         if(matriz.length == 0){
@@ -35,8 +39,6 @@ generarTabla=()=>{
     else if(num_estados.length == 0 || num_simbolos.length == 0){
         alert("Debe agregar los datos correctamente")
     }
-
-    //new_table = '</tbody>'
 }
 
 agregarRow=()=>{
@@ -48,7 +50,6 @@ agregarRow=()=>{
     let newTr="<tr id='"+num_estados+"'>"+rows+"</tr><hr onclick='eliminarRow("+num_estados+")'>"
     new_table = new_table.replace("</tbody>", newTr+'</tbody>')
     document.querySelector('table > tbody').innerHTML =  new_table
-
     //pintar la matriz en tabla
     pintarMatriz()
     generarMatriz()
@@ -56,7 +57,6 @@ agregarRow=()=>{
 }
 
 eliminarRow=(id)=>{
-
     if(id!=0){
         matriz = matriz.filter((word, index) => index != id);
         document.querySelector('input[name="txtEstados"]').value = matriz.length -1
@@ -65,10 +65,7 @@ eliminarRow=(id)=>{
         generarTabla()
         pintarMatriz()
     }
-
-
 }
-
 
 firtsRow=(number_columns)=>{
     var simbolos_entrada_rows = "<td><input type='text' onchange='generarMatriz()' style='width: 95%;'/></td>".repeat(number_columns)
@@ -80,7 +77,6 @@ firtsRow=(number_columns)=>{
         var nRow = rowinit+simbolos_entrada_rows+rowend
         new_table+=nRow
 }
-
 
 generarMatriz = () =>{
     let pos = 3
@@ -104,10 +100,8 @@ generarMatriz = () =>{
 }
 
 pintarMatriz=()=>{
-
     matriz.forEach(function(row, index) {
         let htmlRow = document.querySelector("tr[id='"+index+"']");
-
         row.forEach((it, indexChild) =>{
             htmlRow.querySelectorAll("input")[indexChild].value = it
         })
@@ -115,19 +109,14 @@ pintarMatriz=()=>{
 }
 
 retornarMatriz=()=>{
-
+    Matriz = []
     matriz.forEach((row,index)=>{
-
-
         if(index==0) {
             Matriz.push(row)
         }else{
-
             tempArray = []
             tempRow = []
-
-            row.forEach((it,ind)=>{
-                
+            row.forEach((it,ind)=>{   
                 if(ind!=row.length-1 && ind!=0){
                     if(it==null){
                         it='null'
@@ -141,4 +130,43 @@ retornarMatriz=()=>{
             Matriz.push(tempRow)
         }
     })
+
+    console.log("Matriz resultado " , Matriz)
+    if(!isNaN(num_estados) || !isNaN(num_simbolos)) {
+        if(validarAFND()){
+            alert("Es un automata no deterministico")
+            let botonGraficar = document.getElementById("btnGraficar");
+            botonGraficar.disabled = false;
+        } else {
+            alert("Es un automata deterministico")
+        let botonGraficar = document.getElementById("btnGraficar");
+        botonGraficar.disabled = true;
+        }
+    }else {
+        alert("Debes de primero llenar todo los valores del automata")
+        return 
+    }
+
+}
+
+function validarAFND() {
+    for (let i = 1; i < Matriz.length; i++) {
+        for (let j = 0; j < Matriz[i][1].length; j++) {
+            let temporal = Matriz[i][1][j];
+
+            for (let k = 0; k < temporal.length; k++) {
+                let temporalInterno = temporal[k];
+                if (temporalInterno === "null") {
+                    temporal[k] = "ERROR";
+                    resultado = true;
+                }
+                if (temporalInterno.length > 1 && temporalInterno != "ERROR") {
+                    resultado = true;
+                }
+            }
+        }
+    }
+
+    console.log("Matriz Matriz ", Matriz)
+    return resultado
 }
