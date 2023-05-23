@@ -117,10 +117,20 @@ class NFA {
      
     } 
 
-    for(let a= 0; a < this.alphabet.length; a++ ) {
-      dotStr += `ERROR -> ERROR [label= ${this.alphabet[a]}] \n`
-    }  
+    let agregarEstadoError = false
+    for(let i =0; i < matrizResultado.length; i++) {
+      let recorrerTransiciones = matrizResultado[i][1]
+      if(recorrerTransiciones[0] == "ERROR") {
+        agregarEstadoError= true
+      }
+    }
 
+    if(agregarEstadoError) {
+      for(let a= 0; a < this.alphabet.length; a++ ) {
+        dotStr += `ERROR -> ERROR [label= ${this.alphabet[a]}] \n`
+      }  
+    }
+    
     dotStr += " }";
     return dotStr;
   }
