@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@
             <input type="text" name="txtSimbolos">
         </div>
         <div>
-            <button onclick="generarTabla()""> Generar tabla </button>
+            <button onclick="generarTabla()"> Generar tabla </button>
         </div>
     </div>
 
@@ -34,60 +35,59 @@
             </tr>
         </thead>
         <tbody>
-            
-            <!-- Estrctura dinamica 
-            <tr>
-                <td>A</td>
-                <td>A,C</td>
-                <td>B,D</td>
-                <td>0</td>
-            </tr>
-
-            <tr>
-                <td>B</td>
-                <td>-----</td>
-                <td>C,D</td>
-                <td>0</td>
-            </tr>
-
-            <tr>
-                <td>C</td>
-                <td>A,D</td>
-                <td>-----</td>
-                <td>1</td>
-            </tr>
-
-            <tr>
-                <td>D</td>
-                <td>D</td>
-                <td>-----</td>
-                <td>0</td>
-            </tr>-->
         </tbody>
-      
+
     </table>
 
     <div>
-        <!-- Espacio para la nueva tabla -->
+        <div id="placeholder"></div>
     </div>
 
     <div>
         <button onclick="agregarRow()"> Añadir fila</button>
-        <button onclick="generarMatriz()"> Convertir AFND A AFD </button>
+        <button onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
     <div>
-        <button> Generar gráfica </button>
+        <button id="btnGraficar" disabled="true"> Generar gráfica </button>
+        <button id="boton-borrar" disabled="true"> Resetear gráfica </button>
     </div>
-    
-    
+
+
     <!-- Genera la tabla con las dimensiones-->
-    <script src="js/generarAFND.js"></script> <!-- Edwin -->
-    <!-- Verifica que si sea un AFND - aplicar reglas-->
-    <script src="js/validar.js"></script> <!-- Sebastian -->
-    <!-- Generar la nueva tabla con el AFD-->
-    <script src="js/generarAFD.js"></script> <!-- Vanessa -->
-     <!-- Generar gráfica-->
-    <script src="js/generarGrafica.js"></script> <!-- Andres --->
-</body>
+    <script type="module">
+        import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
+
+    document.getElementById("btnGraficar").onclick= async ()=>{
+        let validarInfo = validar()
+        console.log("validarInfo.existe " , validarInfo.existe)
+        if(validarInfo.existe) {
+        let dfa = validarInfo.dfa
+        console.log("dfa " , dfa)
+        const graphviz = await Graphviz.load();
+        let graficar = dfa.toDotString()
+        const svg = graphviz.dot(graficar);
+        const div = document.getElementById("placeholder");
+        div.innerHTML = graphviz.layout(graficar, "svg", "dot");
+
+        let resetGrafica = document.getElementById("boton-borrar");
+        resetGrafica.disabled = false;
+
+    } else{
+        console.log("No se genera")
+    }
+    };
+
+    document.getElementById("boton-borrar").onclick = () =>{
+        let elemento = document.getElementById("placeholder");
+        elemento.innerHTML = ""
+    }   
+
+   
+
+    </script>
+    <script src="js/generarAFND.js"></script>
+    <script src="js/validar.js"></script>
+    <script src="js/generarAFD.js"></script>
+
 </html>
