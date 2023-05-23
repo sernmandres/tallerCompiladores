@@ -1,3 +1,5 @@
+//Matriz para probar que funciona sin necesidad de llenar todo el formulario
+
 // let Matriz = [
 //     ["null", "2", "4", "null"],
 //     ["A", [["A", "C"], ["B", "D"],], "0",],
@@ -6,31 +8,8 @@
 //     ["D", [["D"], ["null"]], "0"],
 // ];
 
-
-function validarAFND() {
-    let resultado = false
-    for (let i = 1; i < Matriz.length; i++) {
-        for (let j = 0; j < Matriz[i][1].length; j++) {
-            let temporal = Matriz[i][1][j];
-
-            for (let k = 0; k < temporal.length; k++) {
-                let temporalInterno = temporal[k];
-                if (temporalInterno === "null") {
-                    temporal[k] = "ERROR";
-                    resultado = true;
-                }
-                if (temporalInterno.length > 1 && temporalInterno != "ERROR") {
-                    resultado = true;
-                }
-            }
-        }
-    }
-
-    console.log("Matriz Matriz ", Matriz)
-    return resultado
-}
-
 function validar() {
+    console.log("validarAFND() " , validarAFND())
     if (validarAFND()) {
         console.log("Entro en validar() nfa")
         //Estados del automata
@@ -85,10 +64,10 @@ function estadosNoRepetidos() {
         if (index != 0) {
             states.push(row[0])
             let len = row.length
-
+            console.log("rowwwww " , row)
             row.forEach((it, indexit) => {
-
                 if (indexit != 0 && indexit != len - 1) {
+                    console.log("valor de it " , it)
                     it.forEach(item => {
                         if (!item.includes("ERROR")) {
                             if (item.length == 1) {
