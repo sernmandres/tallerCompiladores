@@ -7,50 +7,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller compiladores</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 </head>
 
 <body>
 
-    <div>
-        <div>
-            <label for="estado">Cuantos estados:</label>
-            <input type="text" name="txtEstados">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <p class="subtitle" style="display: flex; justify-content: right;">
+                <span class="icon">
+                <i class="fa-solid fa-user-group"></i>
+                </span>
+                ㅤSOG / ASM
+                
+            </p>
+          <p class="title">
+            Convertidor de Autómatas
+          </p>
+          <p class="subtitle">
+            AFND 
+            <span class="icon">
+                <i class="fas fa-arrow-right"></i>
+            </span>
+            AFD
+          </p>
+          
+        </div>
+      </section>
+
+
+    <div class="inicial">
+        <div class="States">
+            <label for="estado">Ingrese la cantidad de Estados:</label>
+            <input type="text" class="txtEstado" name="txtEstados">
+        </div>
+        <div class="States">
+            <label for="simbol">Ingrese la cantidad de Simbolos:</label>
+            <input type="text" class="txtSimbolo" name="txtSimbolos">
         </div>
         <div>
-            <label for="simbol">Cuantos Simbolos:</label>
-            <input type="text" name="txtSimbolos">
-        </div>
-        <div>
-            <button onclick="generarTabla()"> Generar tabla </button>
+            <button class="btn1" id="genTD" onclick="generarTabla()"> Generar tabla </button>
         </div>
     </div>
 
     <!-- Cuerpo de la tabla | botones | interfaz -->
-    <table id="tabla" class="tabla">
-        <thead>
-            <tr>
-                <td>Estados</td>
-                <td name="simbolos_entrada" colspan="">Simbolos de entrada</td>
-                <td>Acepta(1) Rechaza (0)</td>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
 
-    </table>
+    <div class="columns">
 
-    <div>
-        <div id="placeholder"></div>
+        <div class="column is-1">
+
+        </div>
+
+        <div class="column is-6">
+            <table id="tabla" class="tabla">
+                <thead>
+                    <tr class="textTd">
+                        <td style="background-color: #00d1b2; ">Estados</td>
+                        <td name="simbolos_entrada" colspan="" style="background-color: #00d1b2; ">Simbolos de entrada</td>
+                        <td style="background-color: #00d1b2; ">Acepta(1) Rechaza (0)</td>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                   
+                </tbody>
+        
+            </table>
+        </div>
+
+        <div class="column is-4">
+            
+        </div>
+
+        <div class="column is-1">
+            
+        </div>
+
     </div>
 
-    <div>
-        <button onclick="agregarRow()"> Añadir fila</button>
-        <button onclick="retornarMatriz()"> Convertir AFND A AFD </button>
+    <div class="btnsFinal">
+        <button class="btn1 sepBtn" onclick="agregarRow()"> Añadir fila</button>
+        <button class="btn1 sepBtn" id="tabAfd" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
-    <div>
-        <button id="btnGraficar" disabled="true"> Generar gráfica </button>
-        <button id="boton-borrar" disabled="true"> Resetear gráfica </button>
+    <!-- Cuerpo de la tabla | botones | interfaz -->
+
+    <div class="columns">
+
+        <div class="column is-1">
+
+        </div>
+
+        <div class="column is-6">
+            <table id="tablaAFD" class="tabla">
+                <thead>
+                    <tr class="textTd">
+                        <td style="background-color: #00d1b2;">Estados</td>
+                        <td name="simbolos_entrada" colspan="" style="background-color: #00d1b2;">Simbolos de entrada</td>
+                        <td style="background-color: #00d1b2;">Acepta(1) Rechaza (0)</td>
+                    </tr>
+                </thead>
+                <tbody style="color: black; font-weight: 500;">
+                </tbody>
+        
+            </table>
+        </div>
+
+        <div class="column is-4" style="display: table; text-align: center;">
+           
+                <p class="textTd" id="ultTx" style="background-color: #00d1b2; border: double; border-radius: 10px;">Diagrama de burbuja</p>
+                <div id="placeholder"></div>
+            
+        </div>
+
+        <div class="column is-1">
+            
+        </div>
+
     </div>
 
     <!-- Cuerpo de la tabla | botones | interfaz -->
@@ -66,6 +140,24 @@
         </tbody>
 
     </table>
+    <button class="btn1 btnF sepBtn" id="btnGraficar" disabled="true"> Generar gráfica </button>
+    <button class="btn1 sepBtn" id="boton-borrar" disabled="true"> Resetear gráfica </button>
+
+    <!--ALTERNATIVA PARA BORRAR EL RESETEO-->
+    <button class="btn1 sepBtn" id="refresh">Reiniciar</button>
+
+    <Script>
+        let refresh = document.getElementById('refresh');
+        refresh.addEventListener('click', _ => {
+            location.reload();
+        })
+    </Script>
+
+    
+
+    
+
+    
 
 
 
@@ -74,7 +166,7 @@
     <script type="module">
     import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
-    document.getElementById("btnGraficar").onclick= async ()=>{
+        document.getElementById("btnGraficar").onclick= async ()=>{
         let validarInfo = validar()
         console.log("validarInfo.existe " , validarInfo.existe)
         if(validarInfo.existe) {
@@ -101,6 +193,62 @@
     }   
 
     </script>
+
+<script>
+    $(document).ready(() => {
+
+    $('#ultTx').hide();
+    $('#tabla').hide();
+    $('#tablaAFD').hide();
+    
+    
+});
+</script>
+
+
+
+    <!-- <script src="js/graphviz.js"></script> -->
+    <script src="js/generarAFND.js"></script> 
+    <!-- Verifica que si sea un AFND - aplicar reglas-->
+    <script src="js/validar.js"></script> 
+    <!-- Generar la nueva tabla con el AFD-->
+    <script src="js/generarAFD.js"></script> 
+    <!-- Generar gráfica-->
+    <script src="js/generarGrafica.js"></script> 
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+
+<script>
+$(document).ready(() => {
+
+    document.getElementById('btnGraficar').addEventListener("click", function(){
+   
+    $('#ultTx').show();
+    });
+
+    document.getElementById('boton-borrar').addEventListener("click", function(){
+   
+    $('#ultTx').hide();
+    });
+    
+    document.getElementById('tabAfd').addEventListener("click", function(){
+   
+    $('#tablaAFD').show();
+    });
+
+    document.getElementById('genTD').addEventListener("click", function(){
+   
+    $('#tabla').show();
+    });
+    
+
+});
+
+</script>
+
+</body>
     <script src="js/generarAFND.js"></script>
     <script src="js/validar.js"></script>
     <script src="js/matrizAFD.js"></script>
