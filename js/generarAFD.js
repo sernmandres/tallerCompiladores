@@ -73,7 +73,7 @@ class NFA {
       dotStr +=
         " node [shape = doublecircle]; " + this.finalStates.join(" ,") + " \n";    
       dotStr += " node [shape = circle];\n"; 
-      dotStr += "Inicio[shape=box]"   
+      dotStr += "Inicio[shape = box]"   
 
       prueba +=" node [shape = doublecircle]; " + this.finalStates.join(" ,") + " \n";
       prueba += " node [shape = circle];\n";
