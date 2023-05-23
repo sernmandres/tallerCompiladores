@@ -112,6 +112,8 @@ class NFA {
       }
 
       console.log("matrizResultado " , matrizResultado)
+
+      generarMatrizAFD(matrizResultado, this.finalStates, this.alphabet)
      
     } 
 

@@ -53,6 +53,22 @@
         <button id="boton-borrar" disabled="true"> Resetear gráfica </button>
     </div>
 
+    <!-- Cuerpo de la tabla | botones | interfaz -->
+    <table id="tablaAFD" class="tabla">
+        <thead>
+            <tr>
+                <td>Estados</td>
+                <td name="simbolos_entrada" colspan="">Simbolos de entrada</td>
+                <td>Acepta(1) Rechaza (0)</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+
+
+
 
     <!-- Genera la tabla con las dimensiones-->
     <script type="module">
@@ -81,6 +97,7 @@
     document.getElementById("boton-borrar").onclick = () =>{
         let elemento = document.getElementById("placeholder");
         elemento.innerHTML = ""
+        document.querySelector("#tablaAFD tbody").innerHTML = "<tbody></tbody>"
     }   
 
    
@@ -88,6 +105,7 @@
     </script>
     <script src="js/generarAFND.js"></script>
     <script src="js/validar.js"></script>
+    <script src="js/matrizAFD.js"></script>
     <script src="js/generarAFD.js"></script>
 
 </html>
