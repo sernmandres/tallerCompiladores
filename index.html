@@ -47,7 +47,7 @@
             <input type="text" class="txtSimbolo" name="txtSimbolos">
         </div>
         <div>
-            <button class="btn1" onclick="generarTabla()"> Generar tabla </button>
+            <button class="btn1" id="genTD" onclick="generarTabla()"> Generar tabla </button>
         </div>
     </div>
 
@@ -76,39 +76,82 @@
             </table>
         </div>
 
-        <div class="column is-4" style="display: table; text-align: center;">
-            <div>
-                <p class="textTd" id="ultTx" style="background-color: #00d1b2; border: double; border-radius: 10px;">Diagrama de burbuja</p>
-                <div id="placeholder"></div>
-            </div>
+        <div class="column is-4">
+            
         </div>
 
         <div class="column is-1">
             
         </div>
 
-      </div>
-
-    
-
-
-
-    
-
-    <div class="btnsFinal">
-        <button class="btn1" onclick="agregarRow()"> Añadir fila</button>
-        <button class="btn1" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
     </div>
 
-    <button class="btn1 btnF" id="btnGraficar" disabled="true"> Generar gráfica </button>
-    <button class="btn1" id="boton-borrar" disabled="true"> Resetear gráfica </button>
+    <div class="btnsFinal">
+        <button class="btn1 sepBtn" onclick="agregarRow()"> Añadir fila</button>
+        <button class="btn1 sepBtn" id="tabAfd" onclick="retornarMatriz()"> Convertir AFND A AFD </button>
+    </div>
+
+    <!-- Cuerpo de la tabla | botones | interfaz -->
+
+    <div class="columns">
+
+        <div class="column is-1">
+
+        </div>
+
+        <div class="column is-6">
+            <table id="tablaAFD" class="tabla">
+                <thead>
+                    <tr class="textTd">
+                        <td style="background-color: #00d1b2;">Estados</td>
+                        <td name="simbolos_entrada" colspan="" style="background-color: #00d1b2;">Simbolos de entrada</td>
+                        <td style="background-color: #00d1b2;">Acepta(1) Rechaza (0)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+        
+            </table>
+        </div>
+
+        <div class="column is-4" style="display: table; text-align: center;">
+           
+                <p class="textTd" id="ultTx" style="background-color: #00d1b2; border: double; border-radius: 10px;">Diagrama de burbuja</p>
+                <div id="placeholder"></div>
+            
+        </div>
+
+        <div class="column is-1">
+            
+        </div>
+
+    </div>
+
+    <button class="btn1 btnF sepBtn" id="btnGraficar" disabled="true"> Generar gráfica </button>
+    <button class="btn1 sepBtn" id="boton-borrar" disabled="true"> Resetear gráfica </button>
+
+    <!--ALTERNATIVA PARA BORRAR EL RESETEO-->
+    <button class="btn1 sepBtn" id="refresh">Reiniciar</button>
+
+    <Script>
+        let refresh = document.getElementById('refresh');
+        refresh.addEventListener('click', _ => {
+            location.reload();
+        })
+    </Script>
 
     
+
+    
+
+    
+
+
 
 
     <!-- Genera la tabla con las dimensiones-->
     <script type="module">
-        import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
+    import { Graphviz } from "https://cdn.jsdelivr.net/npm/@hpcc-js/wasm/dist/graphviz.js";
 
         document.getElementById("btnGraficar").onclick= async ()=>{
         let validarInfo = validar()
@@ -133,7 +176,9 @@
     document.getElementById("boton-borrar").onclick = () =>{
         let elemento = document.getElementById("placeholder");
         elemento.innerHTML = ""
-    } 
+    
+        document.querySelector("#tablaAFD tbody").innerHTML = "<tbody></tbody>"
+    }   
 
 
 
@@ -143,6 +188,9 @@
     $(document).ready(() => {
 
     $('#ultTx').hide();
+    $('#tabla').hide();
+    $('#tablaAFD').hide();
+    
     
 });
 </script>
@@ -175,10 +223,25 @@ $(document).ready(() => {
     $('#ultTx').hide();
     });
     
+    document.getElementById('tabAfd').addEventListener("click", function(){
+   
+    $('#tablaAFD').show();
+    });
+
+    document.getElementById('genTD').addEventListener("click", function(){
+   
+    $('#tabla').show();
+    });
+    
+
 });
 
 </script>
 
 </body>
+    <script src="js/generarAFND.js"></script>
+    <script src="js/validar.js"></script>
+    <script src="js/matrizAFD.js"></script>
+    <script src="js/generarAFD.js"></script>
 
 </html>

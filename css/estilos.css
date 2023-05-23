@@ -5,6 +5,8 @@
 }
 
 
+
+
 td {
     /*width: 33.33%;*/
     text-align: center ;
@@ -73,6 +75,10 @@ hr:hover{
     cursor: pointer;
     padding: 4px 4px 4px 4px;
     border-radius: 10px;
+}
+
+.sepBtn{
+    margin-bottom: 4%;
 }
 
 .tabla{

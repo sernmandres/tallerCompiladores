@@ -6,7 +6,7 @@ let num_simbolos= isNaN
 let Matriz = []
 let resultado = false
 
-generarTabla=()=>{
+generarTabla=() => {
     let simbolos = document.querySelector('input[name="txtSimbolos"]').value 
     console.log("simbolos " , simbolos)
     document.querySelector('td[name="simbolos_entrada"]').outerHTML = '<td name="simbolos_entrada" colspan="'+simbolos+'">Simbolos de entrada</td>'
@@ -153,18 +153,20 @@ function validarAFND() {
     for (let i = 1; i < Matriz.length; i++) {
         for (let j = 0; j < Matriz[i][1].length; j++) {
             let temporal = Matriz[i][1][j];
-
+            console.log("temporal = Matriz[i][1][j]; " , temporal = Matriz[i][1][j])
             for (let k = 0; k < temporal.length; k++) {
                 let temporalInterno = temporal[k];
                 if (temporalInterno === "null") {
                     temporal[k] = "ERROR";
                     resultado = true;
                 }
-                if (temporalInterno.length > 1 && temporalInterno != "ERROR") {
+
+                if(temporal.length > 1 && temporalInterno != "ERROR"){
                     resultado = true;
                 }
             }
         }
+
     }
 
     console.log("Matriz Matriz ", Matriz)
