@@ -1,6 +1,8 @@
 let bodyMatrizFDA = "<tbody"
-
+bodyMatrizFDA += ""
 let estadosAcepta = []
+let joined = []
+let matrizFDA = []
 
 function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
 
@@ -38,6 +40,25 @@ function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
         matrizFDA.push(row)
     })
 
+    let existeEstadoError = false
+    for(let i=0; i < matrizFDA.length; i++) {
+        for(let j=0; j < matrizFDA.length; j++ ) {
+            console.log("que hay aca " , matrizResultado[i][1][j])
+            if(matrizResultado[i][1][j] === "ERROR") {
+                console.log("encontré un ERROR")
+                existeEstadoError = true
+            }
+
+        }
+    }
+
+    if(existeEstadoError) {
+        matrizFDA.push(["ERROR",[["ERROR"],["ERROR"]],"0"])
+    }
+
+    console.log("matrizFDA:: " , matrizFDA)
+
+
     //crear tbody repecto a la matriz
 
     matrizFDA.forEach((it, index) => {
@@ -54,6 +75,8 @@ function generarMatrizAFD(matrizResultado, finalStates, alphabet) {
 
         //rows +="<td>"+1+"</td>"
         bodyMatrizFDA += "<tr id='" + (index + 1) + "'>" + rows + "</tr>"
+    
+        console.log("bodyMatrizFDA :: " , bodyMatrizFDA)
     })
 
     //mostrarMatriz
