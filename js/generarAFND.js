@@ -6,7 +6,7 @@ let num_simbolos= isNaN
 let Matriz = []
 let resultado = false
 
-generarTabla=()=>{
+generarTabla=() => {
     let simbolos = document.querySelector('input[name="txtSimbolos"]').value 
     console.log("simbolos " , simbolos)
     document.querySelector('td[name="simbolos_entrada"]').outerHTML = '<td name="simbolos_entrada" colspan="'+simbolos+'">Simbolos de entrada</td>'
