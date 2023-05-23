@@ -60,24 +60,16 @@ class NFA {
     dotStr += ' size="8,5"; \n';
 
     //Todos los estados de aceptacion
-    let prueba = "";
 
     let matrizResultado = []
     let estadoActual;
     let estadoTransicion = ""
-
-
-
 
     if (!this.finalStates.includes(this.formatDotState(this.initialState))) {
       dotStr +=
         " node [shape = doublecircle]; " + this.finalStates.join(" ,") + " \n";    
       dotStr += " node [shape = circle];\n"; 
       dotStr += "Inicio[shape = box]"   
-
-      prueba +=" node [shape = doublecircle]; " + this.finalStates.join(" ,") + " \n";
-      prueba += " node [shape = circle];\n";
-
     } else {
       dotStr +=
         " node [shape = doublecircle]; " +

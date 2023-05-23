@@ -150,6 +150,7 @@ retornarMatriz=()=>{
 }
 
 function validarAFND() {
+    let resultado = false
     for (let i = 1; i < Matriz.length; i++) {
         for (let j = 0; j < Matriz[i][1].length; j++) {
             let temporal = Matriz[i][1][j];
